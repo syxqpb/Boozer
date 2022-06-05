@@ -8,11 +8,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public Transform targetLeft, targetRight, startPosition;
-    //public SpawnManager spawnManager;
     public TextMeshProUGUI health_text, gameOver_text, startGame_text;
     [SerializeField]internal int health = 3;
     public float playerSpeed = 5.0f;
-    private bool isStarted = false;
 
     Vector3 startMousePos;
     Vector3 currentMousePos;

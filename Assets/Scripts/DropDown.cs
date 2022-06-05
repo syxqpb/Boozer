@@ -25,11 +25,14 @@ public class DropDown : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Player"))
         {
+            Debug.Log("Бутылка разбилась о Player");
+            
             Destroy(gameObject);
         }
         else if(other.gameObject.CompareTag("Ground"))
         {
             //playerHP--;
+            Debug.Log("Бутылка разбилась о Ground");
             Destroy(gameObject);
         }
     }

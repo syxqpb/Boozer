@@ -2,12 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 [RequireComponent(typeof(Spawner))]
 public class GameManager : MonoBehaviour
 {
     private int basePropCount = 6;
-    public float baseTimePerProp = 2f;
-    public int currentWave = 3;
+    public float baseTimePerProp = 2.0f;
+    public int currentWave = 1;
     private Spawner _spawner;
     private int currentPropCount;
     public float currentTimer;
@@ -18,13 +19,13 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        WaveStart(1);
+        WaveStart(currentWave);
     }
     private void WaveStart(int currentWave)
     {
         currentPropCount = CalcPropCountPerWave();
         currentTimer = CalcTimerPropPerWave();
-        Debug.Log(currentTimer);
+        Debug.Log($"{currentTimer}");
         _spawner.SpawnProps(currentPropCount, currentTimer);
     }
 
