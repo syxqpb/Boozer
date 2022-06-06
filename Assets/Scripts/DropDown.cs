@@ -13,7 +13,7 @@ public class DropDown : MonoBehaviour
 
     private void Update()
     {
-        
+        //сделать прерывистое вращение пропов дотвином
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -31,7 +31,6 @@ public class DropDown : MonoBehaviour
         }
         else if(other.gameObject.CompareTag("Ground"))
         {
-            //playerHP--;
             Debug.Log("Бутылка разбилась о Ground");
             Destroy(gameObject);
         }

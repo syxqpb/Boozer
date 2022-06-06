@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     private Spawner _spawner;
     private int currentPropCount;
     public float currentTimer;
-
+    /// Старт игры методом через нажатие на прозрачную кнопку START, с отсчётом в 3 сек
     private void Awake()
     {
         _spawner = GetComponent<Spawner>();
