@@ -1,18 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine.Events;
+﻿using UnityEngine.Events;
 
-namespace Assets.Scripts
+internal class GlobalEventManager
 {
-    internal class GlobalEventManager
+    public static UnityEvent<int> onWaveEnded = new UnityEvent<int>();
+    public static void SendWaveEnded(int waveCount)
     {
-        public static UnityEvent<int> onWaveEnded = new UnityEvent<int>();
-        public static void SendWaveEnded(int waveCount)
-        {
-            onWaveEnded.Invoke(waveCount);
-        }
+        onWaveEnded.Invoke(waveCount);
     }
 }

@@ -1,14 +1,9 @@
 using DG.Tweening;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     public Transform targetLeft, targetRight, startPosition;
-    public TextMeshProUGUI health_text, gameOver_text, startGame_text;
     [SerializeField]internal int health = 3;
     public float playerSpeed = 5.0f;
 
@@ -16,18 +11,12 @@ public class PlayerController : MonoBehaviour
     Vector3 currentMousePos;
 
     private void Start()
-    {
-        gameOver_text.gameObject.SetActive(false);
-        startGame_text.gameObject.SetActive(true);
-        startPosition.position = transform.position;
-       // spawnManager.StartGame();
+    {       
+        startPosition.position = transform.position; 
     }
 
     private void Update()
-    {         
-            CurrentHealth();
-
-            //Õ” “»œ –≈… ¿—“
+    {                   
             #region RAYCAST INPUT
             if (Input.GetMouseButtonDown(0))
             {
@@ -65,30 +54,19 @@ public class PlayerController : MonoBehaviour
             }
             #endregion     
     }
-
-    private void CurrentHealth()
-    {
-        health_text.text = $"HEALTH: {health}";
-        if(health == 0)
-        {
-            gameOver_text.gameObject.SetActive(true);          
-        }
-    }
-    
-
-   
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.CompareTag("Bottles"))
-        {
-            Destroy(other.gameObject);
-        }
-        if(other.CompareTag("Heart"))
-        {
-            health++;
-            Destroy(other.gameObject);
-        }
-    }
+  
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if(other.CompareTag("Bottles"))
+    //    {
+    //        Destroy(other.gameObject);
+    //    }
+    //    if(other.CompareTag("Heart"))
+    //    {
+    //        health++;
+    //        Destroy(other.gameObject);
+    //    }
+    //}
     
 
    
