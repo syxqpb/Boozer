@@ -54,20 +54,16 @@ public class PlayerController : MonoBehaviour
             }
             #endregion     
     }
-  
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if(other.CompareTag("Bottles"))
-    //    {
-    //        Destroy(other.gameObject);
-    //    }
-    //    if(other.CompareTag("Heart"))
-    //    {
-    //        health++;
-    //        Destroy(other.gameObject);
-    //    }
-    //}
-    
 
-   
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Heart"))
+        {
+            health++;
+            Destroy(other.gameObject);
+        }
+    }
+
+
+
 }

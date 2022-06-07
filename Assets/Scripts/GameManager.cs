@@ -9,14 +9,17 @@ public class GameManager : MonoBehaviour
     private Spawner _spawner;
     private int currentPropCount;
     public float currentTimer;
+    public GameObject startButton;
+    public GameOverPanelSC gameOverScreen;
     /// Старт игры методом через нажатие на прозрачную кнопку START, с отсчётом в 3 сек
     private void Awake()
     {
         _spawner = GetComponent<Spawner>();
+        
     }
     private void Start()
     {
-        WaveStart(currentWave);
+        
     }
     private void WaveStart(int currentWave)
     {
@@ -33,5 +36,17 @@ public class GameManager : MonoBehaviour
     private float CalcTimerPropPerWave()
     {
         return baseTimePerProp * currentWave * 0.9f;
+    }
+
+    public void StartGame()
+    {
+        startButton.SetActive(false);
+        WaveStart(currentWave);
+    }
+
+    public void GameOver()
+    {
+        gameOverScreen.gameObject.SetActive(true);
+        gameOverScreen.Show();
     }
 }

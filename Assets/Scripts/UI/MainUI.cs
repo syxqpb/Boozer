@@ -14,7 +14,6 @@ public class MainUI : MonoBehaviour
 
     private void Start()
     {
-        gameManager = GetComponent<GameManager>();
         gameOver_text.gameObject.SetActive(false);
         startGame_text.gameObject.SetActive(true);
     }

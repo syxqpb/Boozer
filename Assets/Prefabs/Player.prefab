@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5903297864969995812}
   - component: {fileID: 8683422468922671507}
   - component: {fileID: 7380962166111729060}
+  - component: {fileID: 7981372331613128310}
   - component: {fileID: 1999336385145597621}
   m_Layer: 0
   m_Name: Player
@@ -68,12 +69,21 @@ MonoBehaviour:
   targetLeft: {fileID: 0}
   targetRight: {fileID: 0}
   startPosition: {fileID: 5903297864969995812}
-  spawnManager: {fileID: 0}
-  health_text: {fileID: 0}
-  gameOver_text: {fileID: 0}
-  startGame_text: {fileID: 0}
   health: 3
   playerSpeed: 3.22
+--- !u!114 &7981372331613128310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5461052779654786451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f4dd62f4d2c3664c9563fa7d984812f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerHP: {fileID: 0}
 --- !u!65 &1999336385145597621
 BoxCollider:
   m_ObjectHideFlags: 0
