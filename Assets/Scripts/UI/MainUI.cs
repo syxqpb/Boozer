@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class MainUI : MonoBehaviour
 {
-    public TextMeshProUGUI health_text, gameOver_text, startGame_text, wave_text;
-    public PlayerController playerController;
-    public GameManager gameManager;
+    [SerializeField] private TextMeshProUGUI health_text, gameOver_text, startGame_text, wave_text;
+    [SerializeField] private PlayerController playerController;
+    [SerializeField] private GameManager gameManager;
 
     private void Awake()
     {

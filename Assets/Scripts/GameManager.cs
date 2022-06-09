@@ -3,14 +3,14 @@ using UnityEngine;
 [RequireComponent(typeof(Spawner))]
 public class GameManager : MonoBehaviour
 {
-    private int basePropCount = 6;
-    public float baseTimePerProp = 2.0f;
+    [SerializeField] private int basePropCount = 6;
+    [SerializeField] private float baseTimePerProp = 2.0f;
     public int currentWave = 1;
     private Spawner _spawner;
     private int currentPropCount;
-    public float currentTimer;
-    public GameObject startButton;
-    public GameOverPanelSC gameOverScreen;
+    [SerializeField] private float currentTimer;
+    [SerializeField] private GameObject startButton;
+    [SerializeField] private GameOverPanelSC gameOverScreen;
     /// Старт игры методом через нажатие на прозрачную кнопку START, с отсчётом в 3 сек
     private void Awake()
     {

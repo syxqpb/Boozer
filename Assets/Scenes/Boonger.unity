@@ -984,6 +984,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 290d4b3c16451f349b9a939af159c644, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  basePropCount: 6
   baseTimePerProp: 2
   currentWave: 1
   currentTimer: 0
@@ -1767,7 +1768,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7380962166111729060, guid: 8f5e135a19626f544908fc8f156144b9, type: 3}
       propertyPath: health
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7380962166111729060, guid: 8f5e135a19626f544908fc8f156144b9, type: 3}
       propertyPath: targetLeft
@@ -2249,9 +2250,10 @@ GameObject:
   - component: {fileID: 2144540299}
   - component: {fileID: 2144540298}
   - component: {fileID: 2144540297}
+  - component: {fileID: 2144540301}
   m_Layer: 0
   m_Name: Ground
-  m_TagString: Ground
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2334,6 +2336,18 @@ Transform:
   m_Father: {fileID: 1775005775}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &2144540301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2144540296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 699ff39a2451c3442b03c99f01759d0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2393518443373362645
 PrefabInstance:
   m_ObjectHideFlags: 0

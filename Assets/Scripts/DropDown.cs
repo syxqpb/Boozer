@@ -2,9 +2,16 @@ using UnityEngine;
 
 public class DropDown : MonoBehaviour
 {
-    private void Start()
+    private Player _player;
+    private PlayerController player;
+
+    private void Awake()
     {
 
+    }
+    private void Start()
+    {
+        //GlobalEventManager.bottleBroken.AddListener(_player.DamagedByMissedBottle);
     }
 
     private void Update()
@@ -19,16 +26,23 @@ public class DropDown : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("Player"))
+        if (other.gameObject.TryGetComponent(out PlayerController playerController))
         {
-            Debug.Log("Бутылка разбилась о Player");            
-            Destroy(gameObject);
+            if (playerController != null)
+            {
+                Debug.Log("бутылка разбилась о player");
+                //SCORE INCREASE
+                Destroy(gameObject);
+            }
         }
-        else if(other.gameObject.CompareTag("Ground"))
+        if(other.gameObject.TryGetComponent(out Ground ground))
         {
-            Debug.Log("Бутылка разбилась о Ground");
-           // playerHP.health--;
-            Destroy(gameObject);
+            if(ground != null)
+            {
+                Debug.Log("бутылка разбилась о ground");
+                //PLAYER DAMAGED
+                Destroy(gameObject);
+            }
         }
     }
 }

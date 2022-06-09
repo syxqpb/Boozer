@@ -5,8 +5,14 @@ public class Spawner : MonoBehaviour
 {
     [SerializeField]
     private DropsPropsSC dropsProps;
+    private GameManager gameManager;
     private Vector3 spawnPos;
     private Vector3 offset;
+
+    private void Awake()
+    {
+        gameManager = GetComponent<GameManager>();
+    }
 
     private void Start()
     {
@@ -28,6 +34,7 @@ public class Spawner : MonoBehaviour
             Debug.Log($"Bottle в позиции {dropsProps.props[randPropI].transform.position} появись");
             yield return new WaitForSeconds(timePerProp);
         }
+        GlobalEventManager.SendWaveEnded(gameManager.currentWave);
         Debug.Log("Коурутина завершилась");
     }
  

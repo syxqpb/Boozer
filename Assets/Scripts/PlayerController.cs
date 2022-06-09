@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public Transform targetLeft, targetRight, startPosition;
+    [SerializeField] private Transform targetLeft, targetRight, startPosition;
     [SerializeField]internal int health = 3;
     public float playerSpeed = 5.0f;
 

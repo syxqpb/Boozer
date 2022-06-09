@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DamagedFromBottle : MonoBehaviour
 {
-    public PlayerController playerHP;
+    [SerializeField] private PlayerController playerHP;
     private void Awake()
     {
         playerHP = GetComponent<PlayerController>();
@@ -14,8 +14,8 @@ public class DamagedFromBottle : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Bottles"))
         {
-            Debug.Log("Минус HP у Player");
-            playerHP.health--;
+            //Debug.Log("Минус HP у Player");
+            //playerHP.health--;
         }
     }
 }
