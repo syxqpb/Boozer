@@ -15,7 +15,7 @@ public class Player : PlayerController
         controller = this;
     }
 
-    public int Health { get => controller.health; set => controller.health = value; }
+    private int Health { get => controller.health; set => controller.health = value; }
 
     private void Update()
     {

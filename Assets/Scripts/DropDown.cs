@@ -2,27 +2,12 @@ using UnityEngine;
 
 public class DropDown : MonoBehaviour
 {
-    private Player _player;
-    private PlayerController player;
-
-    private void Awake()
-    {
-
-    }
     private void Start()
     {
         //GlobalEventManager.bottleBroken.AddListener(_player.DamagedByMissedBottle);
     }
 
-    private void Update()
-    {
-        //сделать прерывистое вращение пропов дотвином
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        
-    }
+        //make choppy rotation of props dotwin with coroutine
 
     private void OnTriggerEnter(Collider other)
     {
@@ -30,7 +15,7 @@ public class DropDown : MonoBehaviour
         {
             if (playerController != null)
             {
-                Debug.Log("бутылка разбилась о player");
+                Debug.Log("the bottle broke on the player");
                 //SCORE INCREASE
                 Destroy(gameObject);
             }
@@ -39,7 +24,7 @@ public class DropDown : MonoBehaviour
         {
             if(ground != null)
             {
-                Debug.Log("бутылка разбилась о ground");
+                Debug.Log("the bottle broke on the ground");
                 //PLAYER DAMAGED
                 Destroy(gameObject);
             }

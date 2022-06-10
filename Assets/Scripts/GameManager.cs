@@ -8,10 +8,11 @@ public class GameManager : MonoBehaviour
     public int currentWave = 1;
     private Spawner _spawner;
     private int currentPropCount;
+    private int collectedBottlesCountInWave = 0;
     [SerializeField] private float currentTimer;
     [SerializeField] private GameObject startButton;
     [SerializeField] private GameOverPanelSC gameOverScreen;
-    /// Старт игры методом через нажатие на прозрачную кнопку START, с отсчётом в 3 сек
+    /// Starting the game by pressing the transparent START button, with a countdown of 3 seconds
     private void Awake()
     {
         _spawner = GetComponent<Spawner>();
@@ -23,24 +24,30 @@ public class GameManager : MonoBehaviour
     }
     private void WaveStart(int currentWave)
     {
-        currentPropCount = CalcPropCountPerWave();
-        currentTimer = CalcTimerPropPerWave();
-        Debug.Log($"{currentTimer}");
+        currentPropCount = CalcPropCountPerWave(currentWave);
+        currentTimer = CalcTimerPropPerWave(currentWave);
         _spawner.SpawnProps(currentPropCount, currentTimer);
     }
 
-    private int CalcPropCountPerWave()
+    private int CalcPropCountPerWave(int currentWave)
     {
-        return (int)(basePropCount * (currentWave * 0.5f));
+        if (currentWave == 1)
+            return basePropCount;
+        else return (int)((currentWave % 3 != 0) ? basePropCount + (currentWave * 0.5f) : (basePropCount + (currentWave * 0.8f)));
     }
-    private float CalcTimerPropPerWave()
+    private float CalcTimerPropPerWave(int currentWave)
     {
-        return baseTimePerProp * currentWave * 0.9f;
+        return (float)((currentWave % 3 != 0) ? baseTimePerProp + (currentWave / 1.1f) : baseTimePerProp + (currentWave / 1.3f));
     }
 
     public void StartGame()
     {
         startButton.SetActive(false);
+        WaveStart(currentWave);
+    }
+
+    public void NextWave()
+    {
         WaveStart(currentWave);
     }
 
