@@ -14,4 +14,8 @@ public class GameOverPanelSC : Window
         gameObject.SetActive(false);
         controller.OnWindowClosed(this);
     }
+    public void Restart()
+    {
+
+    }
 }

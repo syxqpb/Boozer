@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Spawner))]
 public class GameManager : MonoBehaviour
@@ -57,6 +58,11 @@ public class GameManager : MonoBehaviour
         GlobalEventManager.SendGameOver();
         gameOverScreen.gameObject.SetActive(true);
         gameOverScreen.Show();
+    }
+
+    public void Reset()
+    {
+        SceneManager.LoadScene(GameLoader.GAME_SCENE);
     }
 
     public void CalcCollectedBottlesPerWave(int collectedBottlesCountInWave)
