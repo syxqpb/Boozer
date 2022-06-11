@@ -6,9 +6,15 @@ internal class GlobalEventManager : UnityEvent<GlobalEventManager>
     public static UnityEvent<int> onWaveEnded = new UnityEvent<int>();
     public static UnityEvent<int> onBottleCollected = new UnityEvent<int>();
     public static UnityEvent<int> onBottleBroken = new UnityEvent<int>();
+    public static UnityEvent<int> onHealthChanged = new UnityEvent<int>();
+    public static UnityEvent onGameOver = new UnityEvent();
     public static void SendWaveEnded(int waveCount)
     {
         onWaveEnded.Invoke(waveCount);
+    }
+    public static void SendHealthChanged(int health)
+    {
+        onHealthChanged.Invoke(health);
     }
     public static void SendBottleBroken(int brokenCount)
     {
@@ -17,5 +23,9 @@ internal class GlobalEventManager : UnityEvent<GlobalEventManager>
     public static void SendBottleCollected(int collectedCount)
     {
         onBottleBroken.Invoke(collectedCount);
+    }
+    public static void SendGameOver()
+    {
+        onGameOver.Invoke();
     }
 }

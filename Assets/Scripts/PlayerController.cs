@@ -6,13 +6,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform targetLeft, targetRight, startPosition;
     [SerializeField]internal int health = 3;
     public float playerSpeed = 5.0f;
+    private int collectedBottles = 0;
 
     Vector3 startMousePos;
     Vector3 currentMousePos;
 
     private void Start()
     {       
-        startPosition.position = transform.position; 
+        startPosition.position = transform.position;
+        GlobalEventManager.onHealthChanged.AddListener(HealthDamaged);
     }
 
     private void Update()
@@ -55,12 +57,20 @@ public class PlayerController : MonoBehaviour
             #endregion     
     }
 
+    public void HealthDamaged(int brokenBottlesCountInWave)
+    {
+        health--;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Heart"))
+        if (other.TryGetComponent(out DropDown bottleGround))
         {
-            health++;
-            Destroy(other.gameObject);
+            if (bottleGround != null)
+            {
+                GlobalEventManager.SendBottleCollected(collectedBottles);
+                //SCORE INCREASE
+            }
         }
     }
 

@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     private Spawner _spawner;
     private int currentPropCount;
     private int collectedBottlesCountInWave = 0;
+    private int brokenBottlesCountInWave = 0;
     [SerializeField] private float currentTimer;
     [SerializeField] private GameObject startButton;
     [SerializeField] private GameOverPanelSC gameOverScreen;
@@ -53,7 +54,18 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        GlobalEventManager.SendGameOver();
         gameOverScreen.gameObject.SetActive(true);
         gameOverScreen.Show();
     }
+
+    public void CalcCollectedBottlesPerWave(int collectedBottlesCountInWave)
+    {
+        collectedBottlesCountInWave++;
+    }
+    public void CalcBrokenBottlesPerWave(int brokenBottlesCountInWave)
+    {
+        brokenBottlesCountInWave++;
+    }
+
 }
