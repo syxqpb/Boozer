@@ -4,19 +4,26 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(Spawner))]
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance;
     [SerializeField] private int basePropCount = 6;
     [SerializeField] private float baseTimePerProp = 2.0f;
+    [SerializeField] private float currentTimer;
+    [SerializeField] private GameObject startButton;
+    [SerializeField] private GameOverPanelSC gameOverScreen;
     public int currentWave = 1;
     private Spawner _spawner;
     private int currentPropCount;
     private int collectedBottlesCountInWave = 0;
     private int brokenBottlesCountInWave = 0;
-    [SerializeField] private float currentTimer;
-    [SerializeField] private GameObject startButton;
-    [SerializeField] private GameOverPanelSC gameOverScreen;
+
+    private ProgressLoader<Progression> loader;
+    public ProgressLoader<Progression> Progress { get { return loader; } }
+
     /// Starting the game by pressing the transparent START button, with a countdown of 3 seconds
     private void Awake()
     {
+        instance = this;
+        loader = new ProgressLoader<Progression>(new Progression());
         _spawner = GetComponent<Spawner>();
         
     }
@@ -57,7 +64,7 @@ public class GameManager : MonoBehaviour
     {
         GlobalEventManager.SendGameOver();
         gameOverScreen.gameObject.SetActive(true);
-        gameOverScreen.Show();
+        gameOverScreen.Open();
     }
 
     public void Reset()
