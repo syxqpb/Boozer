@@ -7,12 +7,12 @@ public class GameOverPanelSC : Window
     public void Open()
     {
         gameObject.SetActive(true);
-        //controller.OnWindowOpen(this);
+        controller.OnWindowOpen(this);
     }
     public void Hide()
     {
         gameObject.SetActive(false);
-        //controller.OnWindowClosed(this);
+        controller.OnWindowClosed(this);
     }
     public void Restart()
     {

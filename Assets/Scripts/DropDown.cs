@@ -2,12 +2,7 @@ using UnityEngine;
 
 public class DropDown : MonoBehaviour
 {
-    private void Start()
-    {
-        //GlobalEventManager.bottleBroken.AddListener(_player.DamagedByMissedBottle);
-    }
-
-        //make choppy rotation of props dotwin with coroutine
+      //make choppy rotation of props dotwin with coroutine
 
     private void OnTriggerEnter(Collider other)
     {

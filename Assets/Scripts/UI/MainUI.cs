@@ -7,24 +7,20 @@ public class MainUI : MonoBehaviour
     [SerializeField] private PlayerController playerController;
     [SerializeField] private GameManager gameManager;
 
-    private void Awake()
-    {
-        
-    }
 
     private void Start()
     {
+        int health = playerController.health;
+        int waveNumber = gameManager.currentWave;
+        CurrentHealthUI(health);
+        CurrentWaveUI(waveNumber);
         gameOver_text.gameObject.SetActive(false);
         startGame_text.gameObject.SetActive(true);
+        GlobalEventManager.onHealthChanged.AddListener(CurrentHealthUI);
+        GlobalEventManager.onWaveEnded.AddListener(CurrentWaveUI);
     }
 
-    private void Update()
-    {
-        CurrentHealthUI(); 
-        CurrentWaveUI();
-    }
-
-    private void CurrentHealthUI()
+    private void CurrentHealthUI(int health)
     {
         health_text.text = $"HEALTH: {playerController.health}";
         if (playerController.health == 0)
@@ -33,7 +29,7 @@ public class MainUI : MonoBehaviour
         }
     }
 
-    private void CurrentWaveUI()
+    private void CurrentWaveUI(int waveNumber)
     {
         wave_text.text = $"WAVE: {gameManager.currentWave}";
     }

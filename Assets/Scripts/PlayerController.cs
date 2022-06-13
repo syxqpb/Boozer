@@ -59,7 +59,10 @@ public class PlayerController : MonoBehaviour
 
     public void HealthDamaged(int brokenBottlesCountInWave)
     {
-        health--;
+        if(health > 0)
+        {
+            health--;
+        }
     }
 
     private void OnTriggerEnter(Collider other)

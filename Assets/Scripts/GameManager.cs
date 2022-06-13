@@ -25,10 +25,7 @@ public class GameManager : MonoBehaviour
         instance = this;
         loader = new ProgressLoader<Progression>(new Progression());
         _spawner = GetComponent<Spawner>();
-        
-    }
-    private void Start()
-    {
+        GlobalEventManager.onGameOver.AddListener(GameOver);
         
     }
     private void WaveStart(int currentWave)
