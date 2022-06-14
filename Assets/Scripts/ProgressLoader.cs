@@ -29,12 +29,37 @@ public class ProgressLoader<T>
 
     public void Save()
     {
-
+        if(!Directory.Exists(Application.persistentDataPath + savePath))
+        {
+            Directory.CreateDirectory(Application.persistentDataPath + savePath);
+        }
+        var stream = File.Open(path, FileMode.OpenOrCreate);
+        try
+        {
+            formatter.Serialize(stream, data);
+        }
+        catch (System.Exception e)
+        {
+            Debug.Log("WARNING " + e.Message);
+        }
+        finally
+        {
+            stream.Dispose();
+        }
     }
 
     private void Load(T defaults)
     {
-
+        if(File.Exists(path))
+        {
+            var stream = File.OpenRead(path);
+            data = (T)formatter.Deserialize(stream);
+            stream.Dispose();
+        }
+        else
+        {
+            data = defaults;
+        }
     }
 
 }

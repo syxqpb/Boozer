@@ -983,7 +983,7 @@ MonoBehaviour:
   baseTimePerProp: 2
   currentTimer: 0
   startButton: {fileID: 305620874}
-  gameOverScreen: {fileID: 8385601029817410155}
+  gameOverScreen: {fileID: 263244044}
   currentWave: 1
 --- !u!114 &945327606
 MonoBehaviour:

@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class GameLoader : MonoBehaviour
 {
-    public const int GAME_SCENE = 1;
+    public const int GAME_SCENE = 0;
 
     private float timeToLoad = 2f;
 

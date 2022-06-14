@@ -58,15 +58,15 @@ public class GameManager : MonoBehaviour
     }
 
     public void GameOver()
-    {
-        GlobalEventManager.SendGameOver();
-        gameOverScreen.gameObject.SetActive(true);
+    {    
         gameOverScreen.Open();
     }
 
     public void Reset()
     {
+        StopAllCoroutines();    
         SceneManager.LoadScene(GameLoader.GAME_SCENE);
+        Time.timeScale = 1.0f;
     }
 
     public void CalcCollectedBottlesPerWave(int collectedBottlesCountInWave)
@@ -76,6 +76,14 @@ public class GameManager : MonoBehaviour
     public void CalcBrokenBottlesPerWave(int brokenBottlesCountInWave)
     {
         brokenBottlesCountInWave++;
+    }
+
+    private void OnApplicationPause(bool pause)
+    {
+        if (pause)
+        {
+
+        }
     }
 
 }

@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     public float playerSpeed = 5.0f;
     private int collectedBottles = 0;
 
+    private ScoreCounter scoreCounter;
+
     Vector3 startMousePos;
     Vector3 currentMousePos;
 
@@ -15,6 +17,7 @@ public class PlayerController : MonoBehaviour
     {       
         startPosition.position = transform.position;
         GlobalEventManager.onHealthChanged.AddListener(HealthDamaged);
+       
     }
 
     private void Update()
@@ -62,6 +65,10 @@ public class PlayerController : MonoBehaviour
         if(health > 0)
         {
             health--;
+            if (health == 0)
+            {
+                GlobalEventManager.SendGameOver();
+            }
         }
     }
 
@@ -71,11 +78,13 @@ public class PlayerController : MonoBehaviour
         {
             if (bottleGround != null)
             {
-                GlobalEventManager.SendBottleCollected(collectedBottles);
+                //GlobalEventManager.SendBottleCollected(scoreCounter.collectedBottles);
                 //SCORE INCREASE
             }
         }
     }
+
+    
 
 
 
