@@ -8,6 +8,7 @@ public class Spawner : MonoBehaviour
     private GameManager gameManager;
     private Vector3 spawnPos;
     private Vector3 offset;
+    private Quaternion quaternion;
 
     private void Awake()
     {
@@ -30,7 +31,9 @@ public class Spawner : MonoBehaviour
         {
             int randPropI = Random.Range(0, dropsProps.props.Count - 1);
             offset = new Vector3(Random.Range(-1.2f, 1.2f), 0f, 0f);
-            Instantiate(dropsProps.props[randPropI], spawnPos+offset, Quaternion.identity);
+            float ang = -90f;
+            quaternion = Quaternion.AngleAxis(ang, offset);
+            Instantiate(dropsProps.props[randPropI], spawnPos+offset, quaternion);
             Debug.Log($"Bottle in position {dropsProps.props[randPropI].transform.position} apear!");
             yield return new WaitForSeconds(timePerProp);
         }

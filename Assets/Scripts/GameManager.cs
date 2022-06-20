@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float currentTimer;
     [SerializeField] private GameObject startButton;
     [SerializeField] private GameOverPanelSC gameOverScreen;
+    [SerializeField] private int score;
     public int currentWave = 1;
     private Spawner _spawner;
     private int currentPropCount;
@@ -23,7 +24,8 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        loader = new ProgressLoader<Progression>(new Progression());
+        score = PlayerPrefs.GetInt("Score", 0);
+        //loader = new ProgressLoader<Progression>(new Progression());
         _spawner = GetComponent<Spawner>();
         GlobalEventManager.onGameOver.AddListener(GameOver);
         
@@ -58,7 +60,11 @@ public class GameManager : MonoBehaviour
     }
 
     public void GameOver()
-    {    
+    {
+        //var result = new Progression.GameResult(score, high);
+        //var data = loader.Data;
+        //data.RegisterHighScore(result);
+       // loader.Save();
         gameOverScreen.Open();
     }
 
