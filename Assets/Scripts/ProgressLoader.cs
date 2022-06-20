@@ -25,16 +25,6 @@ public class ProgressLoader<T>
     {
         formatter = new BinaryFormatter();
         path = Application.persistentDataPath + savePath + "Save" + defaults.GetType().Name + ".dat";
-        try
-        {
-            Load(defaults);
-        }
-        catch
-        {
-            Debug.Log("[WARNING] Can't read a progress!" + path);
-            ProgressDeleter.DeleteData();
-            data = defaults;
-        }
     }
 
     public void Save()

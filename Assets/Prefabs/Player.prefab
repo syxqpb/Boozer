@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5903297864969995812}
   - component: {fileID: 8683422468922671507}
   - component: {fileID: 7380962166111729060}
-  - component: {fileID: 4502171293226543829}
+  - component: {fileID: 7981372331613128310}
   - component: {fileID: 1999336385145597621}
   m_Layer: 0
   m_Name: Player
@@ -71,7 +71,7 @@ MonoBehaviour:
   startPosition: {fileID: 5903297864969995812}
   health: 3
   playerSpeed: 3.22
---- !u!114 &4502171293226543829
+--- !u!114 &7981372331613128310
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -80,11 +80,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5461052779654786451}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b86473ece98efc418eb360b22f73fda, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f4dd62f4d2c3664c9563fa7d984812f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bottleCollected: 0
-  bottleInRow: 0
+  playerHP: {fileID: 0}
 --- !u!65 &1999336385145597621
 BoxCollider:
   m_ObjectHideFlags: 0

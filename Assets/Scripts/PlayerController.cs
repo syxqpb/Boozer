@@ -16,7 +16,8 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {       
         startPosition.position = transform.position;
-        GlobalEventManager.onHealthChanged.AddListener(HealthDamaged);       
+        GlobalEventManager.onHealthChanged.AddListener(HealthDamaged);
+       
     }
 
     private void Update()

@@ -25,13 +25,13 @@ public class Progression
         }
     }
 
-    public bool RegisterHighScore(GameResult result)
+    public bool RegisterHighScore(int max, GameResult result)
     {
         //Method don't checked
-        var beat = result.highScore > result.maxHighScore;
+        var beat = result.highScore > records[max].highScore;
         if (beat)
         {
-          //  records[max] = result;
+            records[max] = result;
         }
         return beat;
     }
