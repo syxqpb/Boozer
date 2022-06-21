@@ -4,9 +4,10 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private Transform targetLeft, targetRight, startPosition;
-    [SerializeField]internal int health = 3;
+    [SerializeField] internal int health = 3;
+    [SerializeField] internal int _score = 100;
+    [SerializeField] internal int collectedBottles = 0;
     public float playerSpeed = 5.0f;
-    private int collectedBottles = 0;
 
     private ScoreCounter scoreCounter;
 
@@ -17,7 +18,8 @@ public class PlayerController : MonoBehaviour
     {       
         startPosition.position = transform.position;
         GlobalEventManager.onHealthChanged.AddListener(HealthDamaged);
-       
+        //GlobalEventManager.onBottleCollected.AddListener(BottleCollected);
+
     }
 
     private void Update()
@@ -72,12 +74,22 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //internal void BottleCollected(int value, int bottleCount)
+    //{
+    //    AddScore(value, bottleCount);
+    //}
+    //public void AddScore(int value, int strike = 1)
+    //{
+    //    scoreCounter.totalScore += value * strike;
+    //}
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out DropDown bottleGround))
         {
             if (bottleGround != null)
             {
+
                 //GlobalEventManager.SendBottleCollected(scoreCounter.collectedBottles);
                 //SCORE INCREASE
             }

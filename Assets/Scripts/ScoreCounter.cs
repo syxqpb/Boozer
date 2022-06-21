@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScoreCounter : PlayerController
+public class ScoreCounter : MonoBehaviour
 {
-    private int totalScore = 0;
-    private int scoreMultiplier = 0;
-
+    public int totalScore = 0;
     public int bottleCollected = 0;
 
     public ScoreCounter(int bottleCollected)
@@ -14,13 +12,21 @@ public class ScoreCounter : PlayerController
         this.bottleCollected = bottleCollected;
     }
 
+    private void Awake()
+    {
+    }
     private void Start()
     {
+       
         GlobalEventManager.onBottleCollected.AddListener(BottleCollected);
     }
 
-    internal void BottleCollected(int bottleCount)
+    internal void BottleCollected(int value , int bottleCount)
     {
-
+        AddScore(value, bottleCount);
+    }
+    public void AddScore(int value, int strike = 1)
+    {
+        totalScore += value * strike;
     }
 }

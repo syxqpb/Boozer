@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class DropDown : MonoBehaviour
 {
-      //make choppy rotation of props dotwin with coroutine
-
+    //make choppy rotation of props dotwin with coroutine
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.TryGetComponent(out PlayerController playerController))
@@ -12,6 +11,8 @@ public class DropDown : MonoBehaviour
             {
                 Debug.Log("the bottle broke on the player");
                 //SCORE INCREASE
+                playerController.collectedBottles++;
+                GlobalEventManager.SendBottleCollected(playerController._score, playerController.collectedBottles);
                 Destroy(gameObject);
             }
         }
@@ -20,7 +21,7 @@ public class DropDown : MonoBehaviour
             if(ground != null)
             {
                 Debug.Log("the bottle broke on the ground");
-                //PLAYER DAMAGED
+                //PLAYER DAMAGED IN SCRIPT GROUND
                 Destroy(gameObject);
             }
         }
