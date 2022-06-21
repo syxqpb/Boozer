@@ -17,6 +17,8 @@ public class Spawner : MonoBehaviour
     private void Start()
     {
         spawnPos = transform.position;
+        Quaternion quaternion = transform.rotation;
+        Vector3 v = quaternion.eulerAngles;
     }
 
     public void SpawnProps(int propCount, float timePerProp)
@@ -30,7 +32,9 @@ public class Spawner : MonoBehaviour
         {
             int randPropI = Random.Range(0, dropsProps.props.Count - 1);
             offset = new Vector3(Random.Range(-1.2f, 1.2f), 0f, 0f);
-            Instantiate(dropsProps.props[randPropI], spawnPos+offset, Quaternion.identity);
+            Quaternion quaternion = transform.rotation;
+            Vector3 v = quaternion.eulerAngles;
+            Instantiate(dropsProps.props[randPropI], spawnPos+offset, Quaternion.LookRotation(v));
             Debug.Log($"Bottle in position {dropsProps.props[randPropI].transform.position} apear!");
             yield return new WaitForSeconds(timePerProp);
         }
