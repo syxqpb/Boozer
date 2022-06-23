@@ -15,6 +15,11 @@ public class MainUI : MonoBehaviour
         int waveNumber = gameManager.currentWave;
         int scoreValue = playerController.ScoreCounter.totalScore;
         int strike = playerController.collectedBottles;
+        GlobalEventManager.onHealthChanged.AddListener(CurrentHealthUI);
+        GlobalEventManager.onWaveEnded.AddListener(CurrentWaveUI);
+        GlobalEventManager.onBottleCollected.AddListener(CurrentScoreUI);
+        GlobalEventManager.onBottleCollected.AddListener(GameOverScoreUI);
+        GlobalEventManager.onBottleCollected.AddListener(HighScoreUI);
         CurrentHealthUI(health, scoreValue);
         CurrentWaveUI(waveNumber);
         CurrentScoreUI(scoreValue, strike);
@@ -22,11 +27,6 @@ public class MainUI : MonoBehaviour
         HighScoreUI(scoreValue, strike);      // HighScoreUI now work just as plug
         gameOver_text.gameObject.SetActive(false);
         startGame_text.gameObject.SetActive(true);
-        GlobalEventManager.onHealthChanged.AddListener(CurrentHealthUI);
-        GlobalEventManager.onWaveEnded.AddListener(CurrentWaveUI);
-        GlobalEventManager.onBottleCollected.AddListener(CurrentScoreUI);
-        GlobalEventManager.onBottleCollected.AddListener(GameOverScoreUI);
-        GlobalEventManager.onBottleCollected.AddListener(HighScoreUI);
     }
 
     private void CurrentHealthUI(int health, int score)

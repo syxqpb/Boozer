@@ -25,13 +25,12 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         scoreCounter = GetComponent<ScoreCounter>();
+        GlobalEventManager.onHealthChanged.AddListener(HealthDamaged);
     }
 
     private void Start()
     {
         startPosition.position = transform.position;
-        GlobalEventManager.onHealthChanged.AddListener(HealthDamaged);
-        //GlobalEventManager.onBottleCollected.AddListener(BottleCollected);
 
     }
 
