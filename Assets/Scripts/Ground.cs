@@ -30,7 +30,7 @@ public class Ground : MonoBehaviour
         if (_controller != null)
         {
             _controller.collectedBottles = 0;
-            GlobalEventManager.SendHealthChanged(_controller.health);
+            GlobalEventManager.SendHealthChanged(_controller.health, _controller.ScoreCounter.totalScore);
         }
         else print("PlayerController not found");
     }

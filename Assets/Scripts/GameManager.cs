@@ -10,11 +10,18 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float currentTimer;
     [SerializeField] private GameObject startButton;
     [SerializeField] private GameOverPanelSC gameOverScreen;
-    public int currentWave = 1;
+    [SerializeField] private GameObject player;
+
     private Spawner _spawner;
+    private ScoreCounter _scoreCounter;
+    private PlayerController controller;
+
+    public int currentWave = 1;
     private int currentPropCount;
     private int collectedBottlesCountInWave = 0;
     private int brokenBottlesCountInWave = 0;
+    private int finalScore;
+
 
     private ProgressLoader<Progression> loader;
     public ProgressLoader<Progression> Progress { get { return loader; } }
@@ -22,6 +29,8 @@ public class GameManager : MonoBehaviour
     /// Starting the game by pressing the transparent START button, with a countdown of 3 seconds
     private void Awake()
     {
+        controller = player.gameObject.GetComponent<PlayerController>();
+        finalScore = PlayerPrefs.GetInt("HighScore", 0);
         instance = this;
         loader = new ProgressLoader<Progression>(new Progression());
         _spawner = GetComponent<Spawner>();
@@ -49,6 +58,7 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         startButton.SetActive(false);
+        Debug.Log(PlayerPrefs.GetInt("HighScore"));
         WaveStart(currentWave);
     }
 
@@ -58,7 +68,13 @@ public class GameManager : MonoBehaviour
     }
 
     public void GameOver()
-    {    
+    {
+        finalScore = controller.ScoreCounter.totalScore;
+        if (finalScore > PlayerPrefs.GetInt("HighScore"))
+        {
+            PlayerPrefs.SetInt("HighScore", finalScore);
+            PlayerPrefs.Save();
+        }
         gameOverScreen.Open();
     }
 

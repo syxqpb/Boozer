@@ -1,6 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 
+[RequireComponent(typeof(ScoreCounter))]
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private Transform targetLeft, targetRight, startPosition;
@@ -10,12 +11,24 @@ public class PlayerController : MonoBehaviour
     public float playerSpeed = 5.0f;
 
     private ScoreCounter scoreCounter;
+    
+    public ScoreCounter ScoreCounter
+    {
+        get => scoreCounter;
+    }
 
     Vector3 startMousePos;
     Vector3 currentMousePos;
 
+
+
+    private void Awake()
+    {
+        scoreCounter = GetComponent<ScoreCounter>();
+    }
+
     private void Start()
-    {       
+    {
         startPosition.position = transform.position;
         GlobalEventManager.onHealthChanged.AddListener(HealthDamaged);
         //GlobalEventManager.onBottleCollected.AddListener(BottleCollected);
@@ -62,7 +75,7 @@ public class PlayerController : MonoBehaviour
             #endregion     
     }
 
-    public void HealthDamaged(int brokenBottlesCountInWave)
+    public void HealthDamaged(int brokenBottlesCountInWave, int score)
     {
         if(health > 0)
         {

@@ -7,14 +7,7 @@ public class ScoreCounter : MonoBehaviour
     public int totalScore = 0;
     public int bottleCollected = 0;
 
-    public ScoreCounter(int bottleCollected)
-    {
-        this.bottleCollected = bottleCollected;
-    }
 
-    private void Awake()
-    {
-    }
     private void Start()
     {
        

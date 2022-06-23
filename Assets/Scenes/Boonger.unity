@@ -984,6 +984,7 @@ MonoBehaviour:
   currentTimer: 0
   startButton: {fileID: 305620874}
   gameOverScreen: {fileID: 263244044}
+  player: {fileID: 2102343161}
   currentWave: 1
 --- !u!114 &945327606
 MonoBehaviour:

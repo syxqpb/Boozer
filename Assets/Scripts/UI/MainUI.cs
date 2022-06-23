@@ -13,9 +13,9 @@ public class MainUI : MonoBehaviour
     {
         int health = playerController.health;
         int waveNumber = gameManager.currentWave;
-        int scoreValue = score.totalScore;
+        int scoreValue = playerController.ScoreCounter.totalScore;
         int strike = playerController.collectedBottles;
-        CurrentHealthUI(health);
+        CurrentHealthUI(health, scoreValue);
         CurrentWaveUI(waveNumber);
         CurrentScoreUI(scoreValue, strike);
         GameOverScoreUI(scoreValue, strike);  // GameOverScoreUI and
@@ -29,8 +29,9 @@ public class MainUI : MonoBehaviour
         GlobalEventManager.onBottleCollected.AddListener(HighScoreUI);
     }
 
-    private void CurrentHealthUI(int health)
+    private void CurrentHealthUI(int health, int score)
     {
+        Debug.Log(playerController.health);
         health_text.text = $"HEALTH: {playerController.health}";
         if (playerController.health == 0)
         {
@@ -54,7 +55,17 @@ public class MainUI : MonoBehaviour
     }
     private void HighScoreUI(int totalScore, int strike)
     {
-        highscore_text.text = $"NEW HIGHSCORE: {score.totalScore}"; //REWORK NEEDED
+        if (playerController.ScoreCounter.totalScore > PlayerPrefs.GetInt("HighScore"))
+        {
+            totalScore = PlayerPrefs.GetInt("HighScore");
+            highscore_text.text = $"NEW HIGHSCORE: {totalScore}";
+
+        }
+        else
+        {
+            totalScore = PlayerPrefs.GetInt("HighScore");
+            highscore_text.text = $"HIGHSCORE: {totalScore}";
+        }
     }
 
 
