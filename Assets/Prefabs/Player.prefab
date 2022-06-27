@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 5903297864969995812}
   - component: {fileID: 8683422468922671507}
   - component: {fileID: 7380962166111729060}
-  - component: {fileID: 7981372331613128310}
   - component: {fileID: 1999336385145597621}
+  - component: {fileID: 2102343162}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -70,20 +70,9 @@ MonoBehaviour:
   targetRight: {fileID: 0}
   startPosition: {fileID: 5903297864969995812}
   health: 3
+  _score: 100
+  collectedBottles: 0
   playerSpeed: 3.22
---- !u!114 &7981372331613128310
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5461052779654786451}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f4dd62f4d2c3664c9563fa7d984812f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerHP: {fileID: 0}
 --- !u!65 &1999336385145597621
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -97,6 +86,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.4019442, y: 5.460478, z: 2.242144}
   m_Center: {x: 0.15553515, y: 2.3742502, z: 0.27323422}
+--- !u!114 &2102343162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5461052779654786451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b86473ece98efc418eb360b22f73fda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  totalScore: 0
+  bottleCollected: 0
 --- !u!1001 &2591981138735232044
 PrefabInstance:
   m_ObjectHideFlags: 0

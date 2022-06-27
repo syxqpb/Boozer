@@ -2,33 +2,28 @@ using UnityEngine;
 
 public class DropDown : MonoBehaviour
 {
-    private void Start()
-    {
-
-    }
-
-    private void Update()
-    {
-        //сделать прерывистое вращение пропов дотвином
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        
-    }
-
+    //make choppy rotation of props dotwin with coroutine
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("Player"))
+        if (other.gameObject.TryGetComponent(out PlayerController playerController))
         {
-            Debug.Log("Бутылка разбилась о Player");            
-            Destroy(gameObject);
+            if (playerController != null)
+            {
+                Debug.Log("the bottle broke on the player");
+                //SCORE INCREASE
+                playerController.collectedBottles++;
+                GlobalEventManager.SendBottleCollected(playerController._score, playerController.collectedBottles);
+                Destroy(gameObject);
+            }
         }
-        else if(other.gameObject.CompareTag("Ground"))
+        if(other.gameObject.TryGetComponent(out Ground ground))
         {
-            Debug.Log("Бутылка разбилась о Ground");
-           // playerHP.health--;
-            Destroy(gameObject);
+            if(ground != null)
+            {
+                Debug.Log("the bottle broke on the ground");
+                //PLAYER DAMAGED IN SCRIPT GROUND
+                Destroy(gameObject);
+            }
         }
     }
 }

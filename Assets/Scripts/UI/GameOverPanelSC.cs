@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameOverPanelSC : Window
 {
-    public void Show()
+    public void Open()
     {
         gameObject.SetActive(true);
         controller.OnWindowOpen(this);
@@ -13,5 +13,9 @@ public class GameOverPanelSC : Window
     {
         gameObject.SetActive(false);
         controller.OnWindowClosed(this);
+    }
+    public void Restart()
+    {
+        GameManager.instance.Reset();
     }
 }

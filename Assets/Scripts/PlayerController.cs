@@ -1,18 +1,30 @@
 using DG.Tweening;
 using UnityEngine;
 
+[RequireComponent(typeof(ScoreCounter))]
 public class PlayerController : MonoBehaviour
 {
-    public Transform targetLeft, targetRight, startPosition;
-    [SerializeField]internal int health = 3;
-    public float playerSpeed = 5.0f;
+    [SerializeField] private Transform targetLeft, targetRight, startPosition;
+    [SerializeField] internal int health = 3;
+    [SerializeField] internal int _score = 100;
+    [SerializeField] internal int collectedBottles = 0;
+
+    private ScoreCounter scoreCounter;
+    
+    public ScoreCounter ScoreCounter
+    {
+        get => scoreCounter;
+    }
 
     Vector3 startMousePos;
     Vector3 currentMousePos;
+    [SerializeField] private LayerMask _backgroundLayer;
 
-    private void Start()
-    {       
-        startPosition.position = transform.position; 
+
+    private void Awake()
+    {
+        scoreCounter = GetComponent<ScoreCounter>();
+        GlobalEventManager.onHealthChanged.AddListener(HealthDamaged);
     }
 
     private void Update()
@@ -31,11 +43,9 @@ public class PlayerController : MonoBehaviour
 
                 RaycastHit hit;
 
-                if (Physics.Raycast(ray, out hit))
+                if (Physics.Raycast(ray, out hit, Mathf.Infinity, _backgroundLayer))
                 {
-                    if (hit.transform.tag == "Background")
-                    {
-                        if(direction.x > 0)
+                    if(direction.x > 0)
                         {
                             transform.DOLookAt(targetRight.position, 0.25f);
                             transform.position = Vector3.Lerp(transform.position, new Vector3(targetRight.position.x, transform.position.y, transform.position.z), Time.deltaTime * 1f);
@@ -44,8 +54,7 @@ public class PlayerController : MonoBehaviour
                         {
                             transform.DOLookAt(targetLeft.position, 0.25f); 
                             transform.position = Vector3.Lerp(transform.position, new Vector3(targetLeft.position.x, transform.position.y, transform.position.z), Time.deltaTime * 1f);
-                        }                       
-                    }
+                        }
                 }
             }
             else
@@ -55,15 +64,15 @@ public class PlayerController : MonoBehaviour
             #endregion     
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void HealthDamaged(int brokenBottlesCountInWave, int score)
     {
-        if (other.CompareTag("Heart"))
+        if(health > 0)
         {
-            health++;
-            Destroy(other.gameObject);
+            health--;
+            if (health == 0)
+            {
+                GlobalEventManager.SendGameOver();
+            }
         }
     }
-
-
-
 }

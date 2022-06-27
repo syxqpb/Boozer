@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraConstantWidth : MonoBehaviour
@@ -24,10 +22,7 @@ public class CameraConstantWidth : MonoBehaviour
 
         initialFov = componentCamera.fieldOfView;
         horizontalFov = CalcVerticalFov(initialFov, 1 / targetAspect);
-    }
-
-    private void Update()
-    {
+        
         if (componentCamera.orthographic)
         {
             float constantWidthSize = initialSize * (targetAspect / componentCamera.aspect);
