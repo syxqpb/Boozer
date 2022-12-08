@@ -45,12 +45,12 @@ public class PlayerController : MonoBehaviour
 
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity, _backgroundLayer))
                 {
-                    if(direction.x > 0)
+                    if(direction.x < 0)
                         {
                             transform.DOLookAt(targetRight.position, 0.25f);
                             transform.position = Vector3.Lerp(transform.position, new Vector3(targetRight.position.x, transform.position.y, transform.position.z), Time.deltaTime * 1f);
                         }
-                        else if (direction.x < 0)
+                        else if (direction.x > 0)
                         {
                             transform.DOLookAt(targetLeft.position, 0.25f); 
                             transform.position = Vector3.Lerp(transform.position, new Vector3(targetLeft.position.x, transform.position.y, transform.position.z), Time.deltaTime * 1f);
